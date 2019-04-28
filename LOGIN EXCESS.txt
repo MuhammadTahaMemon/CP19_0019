@@ -1,0 +1,162 @@
+
+from tkinter import *
+import os
+ 
+# Designing window for registration
+ 
+def register():
+    global register_screen
+    register_screen = Toplevel(main_screen)
+    register_screen.title("Register")
+    register_screen.geometry("1680x1050")
+    register_screen.configure(background="grey")
+    global username
+    global password
+    global username_entry
+    global password_entry
+    username = StringVar()
+    password = StringVar()
+
+    Label(register_screen, text="Create a new account : ",font=("arial black", 36),bg="grey").pack()
+    Label(register_screen, text="").pack()
+    username_lable = Label(register_screen, text="Username * ",font=("calibri", 26),bg="grey")
+    username_lable.pack()
+    username_entry = Entry(register_screen, textvariable=username,width="26",font=("calibri", 20))
+    username_entry.pack()
+    password_lable = Label(register_screen, text="Password * ",font=("calibri", 26),bg="grey")
+    password_lable.pack()
+    password_entry = Entry(register_screen, textvariable=password,width="26", show='*',font=("calibri", 20))
+    password_entry.pack()
+    Label(register_screen, text="").pack()
+    Button(register_screen, text="Register", width=10, height=1,fg="white",bg="black",font=("calibri", 18), command = register_user).pack()
+ 
+ 
+# Designing window for login 
+ 
+def login():
+    global login_screen
+    login_screen = Toplevel(main_screen)
+    login_screen.title("Login")
+    login_screen.geometry("1680x1050")
+    Label(login_screen, text=" Enter  To login : ",font=("arial black", 36),bg="grey").pack()
+    Label(login_screen, text="").pack()
+    login_screen.configure(background="grey")
+    global username_verify
+    global password_verify
+    username_verify = StringVar()
+    password_verify = StringVar()
+    global username_login_entry
+    global password_login_entry
+ 
+    Label(login_screen, text="Username * ",font=("calibri", 26),bg="grey").pack()
+    username_login_entry = Entry(login_screen, textvariable=username_verify,width="26",font=("calibri", 20))
+    username_login_entry.pack()
+    Label(login_screen, text="").pack()
+    Label(login_screen, text="Password * ",font=("calibri", 26),bg="grey").pack()
+    password_login_entry = Entry(login_screen, textvariable=password_verify,width="26", show= '*',font=("calibri", 20))
+    password_login_entry.pack()
+    Label(login_screen, text="").pack()
+    Button(login_screen, text="Login", width=10, height=1,font=("calibri", 18), command = login_verify,fg="white",bg="black").pack()
+ 
+# Implementing event on register button
+ 
+def register_user():
+ 
+    username_info = username.get()
+    password_info = password.get()
+ 
+    file = open(username_info, "w")
+    file.write(username_info + "\n")
+    file.write(password_info)
+    file.close()
+ 
+    username_entry.delete(0, END)
+    password_entry.delete(0, END)
+ 
+    Label(register_screen, text="REGISTERED SUCCESSFULLY ", fg="black", font=("impact", 30),bg="grey").pack()
+ 
+# Implementing event on login button 
+ 
+def login_verify():
+    username1 = username_verify.get()
+    password1 = password_verify.get()
+    username_login_entry.delete(0, END)
+    password_login_entry.delete(0, END)
+ 
+    list_of_files = os.listdir()
+    if username1 in list_of_files:
+        file1 = open(username1, "r")
+        verify = file1.read().splitlines()
+        if password1 in verify:
+            login_sucess()
+ 
+        else:
+            password_not_recognised()
+ 
+    else:
+        user_not_found()
+ 
+# Designing popup for login success
+ 
+def login_sucess():
+    global login_success_screen
+    login_success_screen = Toplevel(login_screen)
+    login_success_screen.title("Success")
+    login_success_screen.geometry("1280x960")
+    Label(login_success_screen, text="Login Success",font=("arial black", 36),fg=" green").pack()
+    Button(login_success_screen, text="OK", font=("calibri", ) ,command=delete_login_success).pack()
+ 
+# Designing popup for login invalid password
+ 
+def password_not_recognised():
+    global password_not_recog_screen
+    password_not_recog_screen = Toplevel(login_screen)
+    password_not_recog_screen.title("Success")
+    password_not_recog_screen.geometry("1280x960")
+    Label(password_not_recog_screen, text="Invalid Password ",font=("calibri", 34),fg="red").pack()
+    Button(password_not_recog_screen, text="OK", command=delete_password_not_recognised,font=("calibri", 26)).pack()
+ 
+# Designing popup for user not found
+ 
+def user_not_found():
+    global user_not_found_screen
+    user_not_found_screen = Toplevel(login_screen)
+    user_not_found_screen.title("SUCCESS")
+    user_not_found_screen.geometry("1280x960")
+    Label(user_not_found_screen, text="User Not Found!!",font=("calibri", 34),fg="red").pack()
+    Button(user_not_found_screen, text="OK", command=delete_user_not_found_screen,font=("calibri", 26)).pack()
+ 
+# Deleting popups
+ 
+def delete_login_success():
+    login_success_screen.destroy()
+ 
+ 
+def delete_password_not_recognised():
+    password_not_recog_screen.destroy()
+ 
+ 
+def delete_user_not_found_screen():
+    user_not_found_screen.destroy()
+ 
+ 
+# Designing Main(first) window
+ 
+def main_account_screen():
+    global main_screen
+    main_screen = Tk()
+    main_screen.geometry("1680x1050")
+    main_screen.title("Account Login")
+    Label(text="LOGIN   OR   REGISTER :" ,width="300", height="2", font=("impact", 60),bg="light blue",fg="white").pack()
+    Label(text="").pack()
+    Button(text="Login", height="1", width="24", command = login,font=("calibri", 28),bg="light blue",fg="white").pack()
+    Label(text="").pack()
+    Button(text="Register", height="1", width="24", command=register,font=("calibri", 28),bg="light blue",fg="white").pack()
+    main_screen.configure(background="white") 
+
+    main_screen.mainloop()
+
+
+ 
+ 
+main_account_screen()
