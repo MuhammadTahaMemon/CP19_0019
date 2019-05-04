@@ -1,7 +1,0 @@
-import cv2
-
-img= cv2.imread(r"C:\Users\Azhar\Desktop\unknown\IMG_6582.jpg",1)
-resized=cv2.resize(img,(img.shape[1]//3,img.shape[0]//3))
-cv2.imshow("Legend",resized)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
