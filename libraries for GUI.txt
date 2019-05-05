@@ -1,0 +1,7 @@
+-pyQt5
+-Tkinter
+-messagebox
+-QtCore
+-QtGui 
+-QtWidgets
+-sys
