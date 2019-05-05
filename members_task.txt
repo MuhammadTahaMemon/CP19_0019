@@ -1,0 +1,13 @@
+1-Data Set done by Muhammad Taha
+--Images of all members and their details.
+2-Image Processing done by Muhammad Taha
+--showing the selected image
+3-Live Video Streaming done by Rohaan Mujeeb
+--live video capturing 
+4-Face detection done by Muhammad Azhar
+--detecting face in live video and for image too.
+5-Video Streaming without webcam (using mobile phone's camera) done by Muhammad Taha
+6-Capturing Imgaes on Live Video Streaming
+--capturing multiple images of live video and writing those images to database.
+7-Muhammad Hashir created a GUI.
+

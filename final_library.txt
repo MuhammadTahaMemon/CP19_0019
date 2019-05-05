@@ -1,0 +1,8 @@
+- We are using Tkinter and PyQT5 for GUI design
+- We are using opencv library for Face Detection
+- We are using harcascade algorithim and its libraries for Face Detection 
+- We are using time libarary
+- We are using numpy library
+- We are using messagebox library
+- We are using datetime library\
+- We are using os library
