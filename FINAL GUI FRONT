@@ -1,0 +1,59 @@
+import numpy
+import cv2,time
+from PIL import Image, ImageTk
+import cv2
+from tkinter import *
+import tkinter.messagebox
+import win32com.client as wincl
+import random
+from PIL import Image
+
+speak = wincl.Dispatch("SAPI.SpVoice")
+speak.Speak("welcome to our application" )
+
+####################BASIC FOR WINDOWS##################
+root=Tk()
+root.geometry('1500x800')
+frame = Frame(root, relief=RIDGE, borderwidth=2)
+frame.pack(fill=BOTH,expand=1)
+root.wm_iconbitmap('user_128_LMC_icon.ico')
+root.wm_title('Face Recognition')
+username_verify = StringVar()
+frame.configure(background="grey70")
+
+
+#####################LABELS#############################
+label = Label(root, text="FACE   RECOGNITION  SYSTEM",font=("cambria",50,"bold"),bg="grey70")
+label.place(x=360,y=25)
+
+Label(frame, text="Username  ",font=('helvetica 15 bold'),pady=5,bg="grey70").place(x=20,y=240)
+username_login_entry = Entry(frame, textvariable=username_verify,width="20",font=("calibri", 16))
+username_login_entry.place(x=160,y=250)
+Label(frame, text="").pack()
+
+
+
+#######################TIME############################
+localtime = time.asctime(time.localtime(time.time()))
+lblInfo = Label(frame,font = ("impact",12),text =localtime ,fg = "black",bd = 10,anchor = "w",bg="grey70")
+lblInfo.place(x=5,y=765)
+
+############live video stream #################################
+image = Image.open("picture.jpg")
+image = image.resize((400, 400), Image.ANTIALIAS)
+photo = ImageTk.PhotoImage(image)
+top_label = Label(frame,image=photo)
+top_label.place(x=800,y=200)
+
+
+
+##################################BUTTONS################################
+but2=Button(frame,padx=5,pady=5,width=5,fg='black',bg="grey90",relief=GROOVE,text='ADD',font=('helvetica 15 bold'))
+but2.place(x=240,y=320)
+
+but2=Button(frame,padx=18,pady=6,width=5,fg='black',bg="grey90",relief=GROOVE,text='TRAINING ',font=('helvetica 15 bold'))
+but2.place(x=225,y=400)
+
+
+
+root.mainloop()
